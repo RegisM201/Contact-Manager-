@@ -83,3 +83,11 @@ p{
 .para-2 a{
     color: #e7b9b4;
 }
+
+.css-element{
+    display:block;
+}
+
+.css-element{
+    display:none;
+}
