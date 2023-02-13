@@ -1,5 +1,5 @@
 body{
-    background: -webkit-linear-gradient(left, #c2dace, #087e8b);
+    background: -webkit-linear-gradient(left, #c2dace, #087E8B);
     font-family: 'Source Code Pro', monospace;
 }
 
@@ -48,26 +48,16 @@ form input{
     outline: none;
 }
 
-.button {
-    text-align: center;
+input[type="button"]{
     width: 320px;
     height: 35px;
     margin-top: 20px;
     border: none;
-    background-color: #e5ded2;
-    color: #2c2c2c;
+    background-color: #49c1a2;
+    color: white;
     font-size: 18px;
 }
 
-.button:hover {
-    background-color: #9d9b93;
-    color: white;
-}
-
-.button:active {
-    background-color: #2c2c2c;
-    color: white;
-}
 p{
     text-align: center;
     padding-top: 20px;
@@ -81,13 +71,75 @@ p{
 }
 
 .para-2 a{
-    color: #e7b9b4;
+    color: #ffb08b;
 }
 
-.css-element{
-    display:block;
+.container {
+    max-width: 600px;
+    margin: auto;
+    background-color: #a9b8be;
 }
 
-.css-element{
-    display:none;
+.header{
+    display: flex;
+    justify-content: space-evenly;
+    color: #2C2C2C;
+    background: -webkit-linear-gradient(left, #087E8B, #c2dace);
+    padding: 2em 0;
+    align-items: center;
+}
+
+.contact-search{
+    font-size: 1em;
+    padding: .3em;
+    border: 1px solid #fff;
+    outline: none;
+    width: 350px;
+}
+
+i{
+    font-size: 1.5em;
+}
+
+.contact-name{
+    font-size: 1.2em;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    list-style-type: none;
+}
+
+hr{
+    border: 1px solid #494a4b5b;
+}
+
+.list__item{
+    list-style: none;
+}
+
+.relationship{
+    width: 6em;
+    text-align: center;
+    padding: .4em .5em;
+    font-size: .8em;
+}
+
+.contact-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:0 1.5em;
+    transition: 0.3s;
+}
+
+.contact-section:hover{
+    background-color: #80787825;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
 }
