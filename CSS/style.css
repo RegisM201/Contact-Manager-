@@ -82,7 +82,7 @@ p{
 .container {
     max-width: 600px;
     margin: auto;
-    background-color: #a9b8be;
+    background: -webkit-repeating-linear-gradient(left,#e5ded2, #a8b6af);
 }
 
 .header{
