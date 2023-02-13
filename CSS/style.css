@@ -48,14 +48,19 @@ form input{
     outline: none;
 }
 
-input[type="button"]{
+.button {
+    text-align: center;
     width: 320px;
     height: 35px;
     margin-top: 20px;
     border: none;
-    background-color: #49c1a2;
-    color: white;
+    background-color: #e5ded2;
+    color: #2c2c2c;
     font-size: 18px;
+}
+.button:hover {
+    background-color: #9d9b93;
+    color: white;
 }
 
 p{
@@ -71,7 +76,7 @@ p{
 }
 
 .para-2 a{
-    color: #ffb08b;
+    color: #e7b9b4;
 }
 
 .container {
@@ -142,4 +147,11 @@ hr{
 a{
     text-decoration: none;
     color: #000;
+}
+
+.css-element{
+    display:block;
+}
+.css-element{
+    display:none;
 }

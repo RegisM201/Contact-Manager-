@@ -1,11 +1,20 @@
-const email = document.getElementById("email");
+const username = document.getElementById("username");
 const password = document.getElementById("password");
 const submitAction = function (){
 	//do something with email.value and password.value
 	console.log("submitting email and password");
-	if (!ValidateEmail(email.value)) console.log("rejected.");
+	
+	}
 	//if fail, display fail somewhere in red text
 }
+
+
+/*
+if (!ValidateEmail(email.value)) {
+		console.log("rejected.");
+		const error = document.createElement("p");
+		const message = document.createTextNode("you entered an invalid email");
+*/
 
 function ValidateEmail(mail) 
 {
@@ -13,7 +22,7 @@ function ValidateEmail(mail)
   {
     return (true)
   }
-    alert("You have entered an invalid email address!")
+    //alert("You have entered an invalid email address!")
     return (false)
 }
 
