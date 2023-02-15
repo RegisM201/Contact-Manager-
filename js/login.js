@@ -1,10 +1,25 @@
-const username = document.getElementById("username");
-const password = document.getElementById("password");
+class LoginRequest {
+	constructor(login, password){
+		this.login = login;
+		this.password = password;
+	}
+	send() {
+		//make message
+		let message = JSON.stringify(this);
+		//send message AJAX request
+		let request= new XMLHttpRequest();
+		
+		request.open("POST", "LAMPAPI/login.php", true); //later change to IP address for serverside
+		request.setRequestHeader("Content-type", "application/json");
+		request.send(message);
+	}
+}
+
 const submitAction = function (){
 	//do something with email.value and password.value
 	console.log("submitting email and password");
-	
-	}
+	let request = new LoginRequest(document.getElementById("username").value, document.getElementById("password").value);
+	let reply = request.send();
 	//if fail, display fail somewhere in red text
 }
 
