@@ -14,14 +14,14 @@
 	$inData = getRequestInfo();
 
 	// Connect to the database.
-	$connection = new mysqli("localhost", "Administrator", "Gr0upNumb3rFive", "COP4331");
+	$connection = new mysqli("localhost", "Administrator", "Master User", "COP4331");
 
 	// Check for connection error.
 	if ($connection->connect_error) {
 		returnWithError($connection->connect_error);
 	} else {
 		$stmt = $connection->prepare("INSERT into Users (FirstName, LastName, Login, Password) VALUES(?,?,?,?)");
-		$stmt->bind_param("ssss", $inData["FirstName"], $$inData["LastName"], $inData["Login"], $inData["Password"]);
+		$stmt->bind_param("ssss", $inData["FirstName"], $inData["LastName"], $inData["Login"], $inData["Password"]);
 		$stmt->execute();
 
 		$stmt->close();
