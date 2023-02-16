@@ -25,7 +25,14 @@ class LoginRequest {
 	}
 
 	receive(request) {
-		console.log(JSON.parse(request.responseText));
+		let reply = JSON.parse(request.responseText);
+		console.log(reply);
+		console.log("received reply.");
+		if(reply.error != "") alert("Incorrect Username or Password");
+		//redirect to main page on success
+		alert("Success");
+
+	
 	}
 }
 
@@ -33,11 +40,8 @@ const submitAction = function (){
 	//do something with email.value and password.value
 	console.log("submitting email and password");
 	let request = new LoginRequest(document.getElementById("username").value, document.getElementById("password").value);
-	let reply = request.send();
-	console.log("received reply.");
-	if(reply.error != "") alert("Incorrect Username or Password");
-
-	console.log("Success");
+	request.send();
+	
 	//if fail, display fail somewhere in red text
 }
 
