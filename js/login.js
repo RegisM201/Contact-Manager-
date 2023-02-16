@@ -15,19 +15,17 @@ class LoginRequest {
 		//request.addEventListener('error', () => console.error('XHR error'));
 		request.onreadystatechange = () => {
    			 if (request.readyState === 4) {
-      				callback(request.response);
+      				return this.receive(request.response);
    			 }
   		}
-  		
+
 		request.send(message);
 		
-		if(request.status === 200) return null;
-		return JSON.parse(request.responseText);
 
 	}
 
 	receive(request) {
-		
+		return JSON.parse(request.responseText);
 	}
 }
 
