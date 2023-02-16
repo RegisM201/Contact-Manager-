@@ -9,7 +9,7 @@ class LoginRequest {
 		//send message AJAX request
 		let request= new XMLHttpRequest();
 		
-		
+		request.open("GET", "LAMPAPI/login.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		//request.addEventListener('load', () => initialize(request.response));
 		//request.addEventListener('error', () => console.error('XHR error'));
@@ -18,7 +18,7 @@ class LoginRequest {
       				callback(request.response);
    			 }
   		}
-  		request.open("GET", "LAMPAPI/login.php", true); //later change to IP address for serverside
+  		
 		request.send(message);
 		
 		if(request.status === 200) return null;
