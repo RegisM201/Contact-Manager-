@@ -30,8 +30,8 @@ class LoginRequest {
 		console.log(reply);
 		console.log("received reply.");
 		if(reply.id != 0) {alert("Incorrect Username or Password");  return;}
+		location.href = "contactList.html";
 		//redirect to main page on success
-		alert("Success");
 
 	
 	}
