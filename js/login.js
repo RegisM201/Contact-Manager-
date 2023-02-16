@@ -1,7 +1,7 @@
 class LoginRequest {
 	constructor(login, password){
-		this.login = login;
-		this.password = password;
+		this.Login = login;
+		this.Password = password;
 	}
 	send() {
 		//make message
@@ -42,8 +42,6 @@ const submitAction = function (){
 	console.log("submitting email and password");
 	let request = new LoginRequest(document.getElementById("username").value, document.getElementById("password").value);
 	request.send();
-	
-	//if fail, display fail somewhere in red text
 }
 
 
