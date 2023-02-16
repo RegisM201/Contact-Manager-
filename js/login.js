@@ -10,7 +10,7 @@ class LoginRequest {
 		//send message AJAX request
 		let request= new XMLHttpRequest();
 		
-		request.open("GET", "LAMPAPI/login.php", true); //later change to IP address for serverside
+		request.open("POST", "LAMPAPI/login.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		//request.addEventListener('load', () => initialize(request.response));
 		//request.addEventListener('error', () => console.error('XHR error'));
@@ -29,7 +29,7 @@ class LoginRequest {
 		let reply = JSON.parse(request.response);
 		console.log(reply);
 		console.log("received reply.");
-		if(reply.error != "") {alert("Incorrect Username or Password");  return;}
+		if(reply.id != 0) {alert("Incorrect Username or Password");  return;}
 		//redirect to main page on success
 		alert("Success");
 
