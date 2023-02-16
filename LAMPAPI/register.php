@@ -15,19 +15,40 @@
 
 	// Connect to the database.
 	$connection = new mysqli("localhost", "Administrator", "Master User", "COP4331");
+	if ($connection->connect_errno)
+	{
+		echo "Failed to connect to MySQL: " . $connection->connect_error;
+		exit();
+	}
 
-	// Check for connection error.
-	if ($connection->connect_error) {
-		returnWithError($connection->connect_error);
-	} else {
+	// prepare and bind
+	$stmt = $connection->prepare("SELECT ID FROM Users WHERE Login = ?");
+	$stmt->bind_param("s",$login);
+
+	// set parameters and execute
+	$firstname = $inData["FirstName"];
+	$lastname = $inData["LastName"];
+	$login = $inData["Login"];
+	$password = $inData["Password"];
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	// Check if the user is already in the relation.
+	if($row = $result->fetch_assoc())
+	{
+		returnWithError("Record in relation found");
+	}
+	
+	// The user is unique, register the client
+	else
+	{
 		$stmt = $connection->prepare("INSERT into Users (FirstName, LastName, Login, Password) VALUES(?,?,?,?)");
-		$stmt->bind_param("ssss", $inData["FirstName"], $inData["LastName"], $inData["Login"], $inData["Password"]);
+		$stmt->bind_param("ssss", $firstname, $lastname, $login, $password);
 		$stmt->execute();
-
 		$stmt->close();
 		$connection->close();
-
-		returnWithError("Successfully registered");
+		returnWithError("New record created");
 	}
 
 	function getRequestInfo()

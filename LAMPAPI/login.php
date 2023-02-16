@@ -1,5 +1,4 @@
 <?php
-
 	header('Access-Control-Allow-Origin: *');
 	header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 	header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
@@ -26,7 +25,7 @@
 		returnWithError($connection->connect_error);
 	} else {
 		$stmt = $connection->prepare("SELECT ID, FirstName, LastName FROM Users WHERE Login = ? AND Password = ?");
-		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
+		$stmt->bind_param("ss", $inData["Login"], $inData["Password"]);
 		$stmt->execute();
 
 		$result = $stmt->get_result();
@@ -39,7 +38,7 @@
 			returnWithError("No record in relation found");
 		}
 	}
-	
+
 	function getRequestInfo() {
 		return json_decode(file_get_contents('php://input'), true);
 	}
@@ -49,15 +48,13 @@
 		echo $obj;
 	}
 
-  	function returnWithError( $err )
-	{
-		$retValue = '{"error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
-	}
-  
 	function returnWithInfo($firstName, $lastName, $id) {
-		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
-		sendResultInfoAsJson( $retValue );
+		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '"}';
+		sendResultInfoAsJson($retValue);
 	}
-		
+	
+	function returnWithError($err) {
+		$retValue = '{"id": 0,"firstName:" "","lastName":"","error":""' . $err . '"}';
+		sendResultInfoAsJson($retValue);
+	}
 ?>
