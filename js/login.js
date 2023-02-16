@@ -9,24 +9,25 @@ class LoginRequest {
 		//send message AJAX request
 		let request= new XMLHttpRequest();
 		
-		request.open("POST", "LAMPAPI/login.php", true); //later change to IP address for serverside
+		
 		request.setRequestHeader("Content-type", "application/json");
-		request.addEventListener('load', () => initialize(request.response));
-		request.addEventListener('error', () => console.error('XHR error'));
+		//request.addEventListener('load', () => initialize(request.response));
+		//request.addEventListener('error', () => console.error('XHR error'));
+		request.onreadystatechange = () => {
+   			 if (request.readyState === 4) {
+      				callback(request.response);
+   			 }
+  		}
+  		request.open("GET", "LAMPAPI/login.php", true); //later change to IP address for serverside
 		request.send(message);
-		while(!this.receive(request));
+		
 		if(request.status === 200) return null;
 		return JSON.parse(request.responseText);
 
 	}
 
 	receive(request) {
-		if (request.readyState === XMLHttpRequest.DONE) {
- 			 return true;
-		}
-		else {
-  			return false;
-		}
+		
 	}
 }
 
@@ -35,7 +36,10 @@ const submitAction = function (){
 	console.log("submitting email and password");
 	let request = new LoginRequest(document.getElementById("username").value, document.getElementById("password").value);
 	let reply = request.send();
+	console.log("received reply.");
 	if(reply.error != "") alert("Incorrect Username or Password");
+
+	console.log("Success");
 	//if fail, display fail somewhere in red text
 }
 
