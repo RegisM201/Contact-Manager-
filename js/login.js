@@ -15,7 +15,7 @@ class LoginRequest {
 		//request.addEventListener('error', () => console.error('XHR error'));
 		request.onreadystatechange = () => {
    			 if (request.readyState === 4) {
-      				this.receive(request.response);
+      				this.receive(request);
    			 }
   		}
 
@@ -25,7 +25,7 @@ class LoginRequest {
 	}
 
 	receive(request) {
-		let reply = JSON.parse(request.responseText);
+		let reply = JSON.parse(request.response);
 		console.log(reply);
 		console.log("received reply.");
 		if(reply.error != "") alert("Incorrect Username or Password");
