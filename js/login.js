@@ -6,6 +6,7 @@ class LoginRequest {
 	send() {
 		//make message
 		let message = JSON.stringify(this);
+		console.log('sending: '+message);
 		//send message AJAX request
 		let request= new XMLHttpRequest();
 		
@@ -28,7 +29,7 @@ class LoginRequest {
 		let reply = JSON.parse(request.response);
 		console.log(reply);
 		console.log("received reply.");
-		if(reply.error != "") alert("Incorrect Username or Password");
+		if(reply.error != "") {alert("Incorrect Username or Password");  return;}
 		//redirect to main page on success
 		alert("Success");
 
