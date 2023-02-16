@@ -15,7 +15,7 @@ class LoginRequest {
 		//request.addEventListener('error', () => console.error('XHR error'));
 		request.onreadystatechange = () => {
    			 if (request.readyState === 4) {
-      				return this.receive(request.response);
+      				this.receive(request.response);
    			 }
   		}
 
@@ -25,7 +25,7 @@ class LoginRequest {
 	}
 
 	receive(request) {
-		return JSON.parse(request.responseText);
+		console.log(JSON.parse(request.responseText));
 	}
 }
 
