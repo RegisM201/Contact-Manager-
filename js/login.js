@@ -14,7 +14,7 @@ class LoginRequest {
 		request.addEventListener('load', () => initialize(request.response));
 		request.addEventListener('error', () => console.error('XHR error'));
 		request.send(message);
-		while(!receive(request));
+		while(!this.receive(request));
 		if(request.status === 200) return null;
 		return JSON.parse(request.responseText);
 
