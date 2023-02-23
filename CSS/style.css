@@ -155,3 +155,13 @@ a{
 .css-element{
     display:none;
 }
+
+.icon1{
+    font-size: 1.5em;
+    float:left;
+}
+
+.icon2{
+    font-size: 1.5em;
+    float:right;
+}
