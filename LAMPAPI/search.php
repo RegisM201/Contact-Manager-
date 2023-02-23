@@ -44,14 +44,20 @@
 
 	$sqli_result_obj = $stmt->get_result();
 
+	// $list [] = array();
 	while ($row = $sqli_result_obj->fetch_assoc()) {
 		if($searchCount > 0) {
 			$searchResults .= ",";
 		}
 		$searchCount++;
-		$searchResults .= '{"id": ' . $row["ID"] . ',"FirstName":" ' . $row["FirstName"] . ' ","LastName": '. $row["LastName"] .'"}';
+		// $searchResults .= '{"id": ' . $row["ID"] . ',"FirstName":" ' . $row["FirstName"] . ' ","LastName": '. $row["LastName"] .'"}';
+		$searchResults = json_encode($row);
+		// $list[$searchCount] = $searchResults; 
+		// array_push($list,$searchResults);
+		echo $searchResults;
 	}
 
+	// returnWithInfo($searchResults);
 	returnWithInfo($searchResults);
 
 	function getRequestInfo() {
