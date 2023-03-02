@@ -11,6 +11,14 @@ body{
     border-radius: 3px;
 }
 
+.contact-box {
+    width: 360px;
+    height: auto;
+    margin: auto;
+    background-color: white;
+    border-radius: 3px;
+}
+
 .login-box{
     width: 360px;
     height: 290px;
@@ -31,6 +39,7 @@ h4{
 form{
     width: 300px;
     margin-left: 20px;
+    height: auto;
 }
 
 form label{
@@ -62,6 +71,11 @@ form input{
     background-color: #9d9b93;
     color: white;
 }
+.button:active {
+    background-color: #9d9b93;
+    color: gray;
+}
+
 
 p{
     text-align: center;
@@ -81,6 +95,7 @@ p{
 
 .container {
     max-width: 600px;
+    border-radius: 10px;
     margin: auto;
     background: -webkit-repeating-linear-gradient(left,#e5ded2, #a8b6af);
 }
@@ -88,6 +103,7 @@ p{
 .header{
     display: flex;
     justify-content: space-evenly;
+    border-radius: 10px;
     color: #2C2C2C;
     background: -webkit-linear-gradient(left, #087E8B, #c2dace);
     padding: 2em 0;
@@ -154,4 +170,48 @@ a{
 }
 .css-element{
     display:none;
+}
+
+.icon1{
+    text-align: center;
+    font-size: 1.5em;
+    top:50%;
+    border-radius: 5px;
+    float:left;
+    width:45px;
+    height:45px;
+    background-color: white;
+    color: #2c2c2c;
+}
+
+.icon1:hover{
+    background-color: #9d9b93;
+    color: white;
+}
+
+.icon1:active{
+    background-color: white;
+    color: gray;
+}
+
+.icon2{
+    text-align: center;
+    font-size: 1.5em;
+    border-radius: 5px;
+    top:50%;
+    float:right;
+    width:45px;
+    height:45px;
+    background-color: white;
+    color: #2c2c2c;
+}
+
+.icon2:hover{
+    background-color: #9d9b93;
+    color: white;
+}
+
+.icon2:active{
+    background-color: white;
+    color: gray;
 }
