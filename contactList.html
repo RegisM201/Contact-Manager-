@@ -12,52 +12,79 @@
                 <form class="search-bar">
                     <input type="search-name" class="contact-search" name="search-area" placeholder="Search">
                 </form>
-                <a href="signup.html">
                     <i class="fa-sharp fa-solid fa-user-plus"></i>
-                </a>
+                
             </header>
 
             <section class="contacts-library">
                 <ul class="contacts-list">
                     <div class="contact">
                         <hr>
-                        <a href="#">
-                            <div class="contact-section">
-                                <li class="list__item">
-                                    <p class="contact-name">Jackson Mazer</p>
-                                    <p class="relationship">Friend</p>
-                                </li>
-                                    <p class="view"><a href="#">View</a></p>
-                            </div>
-                        </a>
+                        <div class="contact-section">
+                            <li class="list__item">
+                                <p class="contact-name">Jackson Mazer</p>
+                                <p class="relationship">Friend</p>
+                            </li>
+                                <p> <button id="view" class="view">View</p>
+                        </div>
                         
                     </div>
                 </ul>
             </section>
 
-            <dialog  open  class="information">
-                <div class="contact-box">
-                    <form>
-                      <label>First Name</label>
-                      <input type="text" placeholder="">
-                      <label>Last Name</label>
-                      <input type="text" placeholder="">
-                      <label>Email</label>
-                      <input type="email" placeholder="">
-                      <label>Phone</label>
-                      <input type="phone" placeholder="">
-                      <label>Date Created</label>
-                      <input type="date" placeholder="">
-                      <br><br>
-                      <div class="icon1">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                      </div>
-                      <div class="icon2" id="button" >
-                        <i class="fa-solid fa-trash-can"></i>
-                      </div> 
-                    </form>
-                  </div>
-            </dialog>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div class="contact-box">
+                        <form>
+                        <label>First Name</label>
+                        <input type="text" placeholder="">
+                        <label>Last Name</label>
+                        <input type="text" placeholder="">
+                        <label>Email</label>
+                        <input type="email" placeholder="">
+                        <label>Phone</label>
+                        <input type="phone" placeholder="">
+                        <label>Date Created</label>
+                        <input type="date" placeholder="">
+                        <br><br>
+                        <div class="icon1">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
+                        <div class="icon2" id="button" >
+                            <i class="fa-solid fa-trash-can"></i>
+                        </div> 
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <script>
+                // Get the modal
+                var modal = document.getElementById("myModal");
+                
+                // Get the button that opens the modal
+                var btn = document.getElementById("view");
+                
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+                
+                // When the user clicks the button, open the modal 
+                btn.onclick = function() {
+                  modal.style.display = "block";
+                }
+                
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function() {
+                  modal.style.display = "none";
+                }
+                
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function(event) {
+                  if (event.target == modal) {
+                    modal.style.display = "none";
+                  }
+                }
+                </script>
         </div>
     </body>
 </html>
