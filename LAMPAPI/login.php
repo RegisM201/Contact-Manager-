@@ -49,12 +49,12 @@
 	}
 
 	function returnWithInfo($firstName, $lastName) {
-		$retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '"}';
+		$retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '", err:""}';
 		sendResultInfoAsJson($retValue);
 	}
 	
 	function returnWithError($err) {
-		$retValue = '{"id": 0, "firstName":"", "lastName":"", "error": " ' . $err . ' "}';
+		$retValue = '{"id": 0 , $err . ' "}';
 		sendResultInfoAsJson($retValue);
 	}
 ?>
