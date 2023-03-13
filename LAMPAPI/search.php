@@ -1,81 +1,51 @@
 <?php
+	// Standard HTTP Request headers.
 	header('Access-Control-Allow-Origin: *');
 	header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 	header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
 
-	 // reports all errors
-	error_reporting(E_ALL);
-
-	// Display all errors
-	ini_set("display_errors", "1");
-	ini_set("log_errors", 1);
-	ini_set("error_log", "/tmp/php-error.log");
-
+	// Read in request body and store as json.
 	$inData = getRequestInfo();
 
-	// Try to connect to the database.
+	// Wrap request body into a json object.
+	function getRequestInfo() {
+		return json_decode(file_get_contents('php://input'), true);
+	}
+
 	$connection = new mysqli("localhost", "Administrator", "Master User", "COP4331");
 
-	// Connection error checking.
-	if ($connection->connect_errno)
-	{
+	// Verify database connection.
+	if ($connection->connect_errno) {
 		echo "Failed to connect to MySQL: " . $connection->connect_error;
 		exit();
 	}
-	
-	// Set default values.
-	$searchResults = "";
-	$searchCount = 0;
-    
-	// Prepare before bind
-	$stmt = $connection->prepare("SELECT * FROM Users WHERE FirstName like ?");
 
 	// Define search pattern.
 	$searchStr = $inData["search"];
 	$patternMatcher = "%" . $searchStr . "%";
 
-	// Pattern matcher is a string type therefore, the bind type is a string.
+	// Query the contact information.
+	$stmt = $connection->prepare("SELECT FirstName, LastName,
+				Address, Email, PhoneNumber FROM Contacts WHERE FirstName like ?");
+
+	// Represents our pattern matcher data type which is a string('s') because FirstName is a string.
 	$bindType = "s";
 
-	if ($stmt->bind_param($bindType, $patternMatcher) == 'true')
-	{
+	// Verify that the pattern string can be binded to '?' part of the sql statment above, then execute query.
+	if ($stmt->bind_param($bindType, $patternMatcher) == 'true') {
+		$stmt->bind_param("s", $patternMatcher);
 		$stmt->execute();
 	}
 
-	$sqli_result_obj = $stmt->get_result();
+	// Get row of each contact from the database that matches the request search pattern.
+	$contactList = $stmt->get_result()->fetch_all();
 
-	// $list [] = array();
-	while ($row = $sqli_result_obj->fetch_assoc()) {
-		if($searchCount > 0) {
-			$searchResults .= ",";
-		}
-		$searchCount++;
-		// $searchResults .= '{"id": ' . $row["ID"] . ',"FirstName":" ' . $row["FirstName"] . ' ","LastName": '. $row["LastName"] .'"}';
-		$searchResults = json_encode($row);
-		// $list[$searchCount] = $searchResults; 
-		// array_push($list,$searchResults);
-		echo $searchResults;
-	}
+	// Respond to request.
+	sendResultInfoAsJson($contactList);
 
-	// returnWithInfo($searchResults);
-	returnWithInfo($searchResults);
-
-	function getRequestInfo() {
-		return json_decode(file_get_contents('php://input'), true);
-	}
-
+	// Verify the response is an array, then wrap it as a json array.
 	function sendResultInfoAsJson($obj) {
 		header('Content-type: application/json');
-		echo $obj;
-	}
-
-	function returnWithInfo($searchResults) {
-		$retValue = '{"results":['. $searchResults .'],"error":""}';
-		sendResultInfoAsJson($retValue);
-	}
-	
-	function returnWithError($err) {
-		$retValue = '{"id": 0,"firstName":"","lastName":"","error":""' . $err . '"}';
-		sendResultInfoAsJson($retValue);
+		echo is_array($obj) ? json_encode($obj) : 'No contacts found';
 	}
 ?>
