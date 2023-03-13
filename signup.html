@@ -11,7 +11,8 @@ user-scalable=no">
   <body>
     <div class="signup-box">
       <h1>Sign Up</h1>
-      <h4> It's free and only takes a minute</h4>
+      <h2 id="error1" style="display:none">Username taken. Please try again.</h2>
+      <h2 id="error2" style="display:none">Passwords not matching. Please try again.</h2>
       <form>
         <label>First Name</label>
         <input type="text" id="firstName">
@@ -27,6 +28,6 @@ user-scalable=no">
       </form>
     </div>
     <p class="para-2">Already have an account? <a href="login.html">Login here</a></p>
-
+    <script type="text/javascript" src="js/register.js"></script>
   </body>
 </html>

@@ -1,7 +1,9 @@
-class LoginRequest {
-	constructor(login, password){
+class RegisterRequest {
+	constructor(login, password,firstName, lastName){
 		this.Login = login;
 		this.Password = password;
+		this.FirstName = firstName;
+		this.LastName = lastName;
 	}
 	send() {
 		//make message
@@ -10,10 +12,8 @@ class LoginRequest {
 		//send message AJAX request
 		let request= new XMLHttpRequest();
 		
-		request.open("POST", "LAMPAPI/login.php", true); //later change to IP address for serverside
+		request.open("POST", "http://147.182.163.107/LAMPAPI/register.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
-		//request.addEventListener('load', () => initialize(request.response));
-		//request.addEventListener('error', () => console.error('XHR error'));
 		request.onreadystatechange = () => {
    			 if (request.readyState === 4) {
       				this.receive(request);
@@ -22,45 +22,27 @@ class LoginRequest {
 
 		request.send(message);
 		
-
 	}
 
 	receive(request) {
 		let reply = JSON.parse(request.response);
 		console.log(reply);
-		console.log("received reply.");
-		if(reply.id == 0) {alert("Incorrect Username or Password");  return;}
-		location.href = "contactList.html";
-		//redirect to main page on success
-
+		if(reply.error === "Record in relation found"){
+			document.getElementById("error1").setAttribute("style","display:");
+			return;
+		}
+		location.href="login.html";
 	
 	}
 }
 
 const submitAction = function (){
-	//do something with email.value and password.value
-	console.log("submitting email and password");
-	let request = new LoginRequest(document.getElementById("username").value, document.getElementById("password").value);
-	request.send();
-}
-
-
-/*
-if (!ValidateEmail(email.value)) {
-		console.log("rejected.");
-		const error = document.createElement("p");
-		const message = document.createTextNode("you entered an invalid email");
+	if(document.getElementById("password").value === document.getElementById("password2").value==0) {
+		document.getElementById("error2").setAttribute("style","display:"); return;
 	}
-*/
-
-function ValidateEmail(mail) 
-{
- if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
-  {
-    return (true)
-  }
-    //alert("You have entered an invalid email address!")
-    return (false)
+	let request = new RegisterRequest(document.getElementById("username").value, document.getElementById("password").value,
+		document.getElementById("firstName").value, document.getElementById("lastName").value);
+	request.send();
 }
 
 document.getElementById("submitButton").onclick = submitAction;

@@ -10,10 +10,8 @@ class LoginRequest {
 		//send message AJAX request
 		let request= new XMLHttpRequest();
 		
-		request.open("POST", "LAMPAPI/login.php", true); //later change to IP address for serverside
+		request.open("POST", "http://147.182.163.107/LAMPAPI/login.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
-		//request.addEventListener('load', () => initialize(request.response));
-		//request.addEventListener('error', () => console.error('XHR error'));
 		request.onreadystatechange = () => {
    			 if (request.readyState === 4) {
       				this.receive(request);
@@ -27,10 +25,12 @@ class LoginRequest {
 
 	receive(request) {
 		let reply = JSON.parse(request.response);
-		console.log(reply);
-		console.log("received reply.");
-		if(reply.id == 0) {alert("Incorrect Username or Password");  return;}
-		location.href = "contactList.html";
+		console.log(reply)
+		if(reply.err == "No record in relation found") {
+			document.getElementById("error").setAttribute("style","display:");  return;
+		}
+		document.getElementById("error").setAttribute("style","display:none");
+			location.href = "contactList.html";
 		//redirect to main page on success
 
 	
@@ -39,7 +39,6 @@ class LoginRequest {
 
 const submitAction = function (){
 	//do something with email.value and password.value
-	console.log("submitting email and password");
 	let request = new LoginRequest(document.getElementById("username").value, document.getElementById("password").value);
 	request.send();
 }
