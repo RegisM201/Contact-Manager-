@@ -32,7 +32,7 @@
 
 		// Check to see if the user login info is in the relation.
 		if($row = $result->fetch_assoc()) {
-			returnWithInfo($row['FirstName'], $row['LastName']);
+			returnWithInfo($row['FirstName'], $row['LastName'], $row['ID']);
 		}
 		else {
 			returnWithError("No record in relation found");
@@ -48,13 +48,13 @@
 		echo $obj;
 	}
 
-	function returnWithInfo($firstName, $lastName) {
-		$retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '", err:""}';
+	function returnWithInfo($firstName, $lastName, $id) {
+		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '"}';
 		sendResultInfoAsJson($retValue);
 	}
 	
 	function returnWithError($err) {
-		$retValue = '{"id": 0 , $err . ' "}';
-		sendResultInfoAsJson($retValue);
+		$retValue = '{"id": 0,"firstName:" "","lastName":"","error":""' . $err . '"}';
+		sendResultInfoAsJson($err);
 	}
 ?>
