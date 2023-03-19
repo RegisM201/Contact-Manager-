@@ -30,8 +30,8 @@ class LoginRequest {
 			document.getElementById("error").setAttribute("style","display:");  return;
 		}
 		document.getElementById("error").setAttribute("style","display:none");
-		setCookie("username",this.Login, 1, path="/contactList.html");
-		setCookie("password", this.Password, 1, path="/contactList.html");
+		setCookie("username",this.Login, 1);
+		setCookie("password", this.Password, 1);
 		location.href = "contactList.html";
 		//redirect to main page on success
 
