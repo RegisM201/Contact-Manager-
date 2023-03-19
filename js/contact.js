@@ -30,9 +30,7 @@ class LoginRequest {
 			document.getElementById("error").setAttribute("style","display:");  return;
 		}
 		document.getElementById("error").setAttribute("style","display:none");
-		setCookie("username",this.Login, 1, path="/contactList.html");
-		setCookie("password", this.Password, 1, path="/contactList.html");
-		location.href = "contactList.html";
+			location.href = "contactList.html";
 		//redirect to main page on success
 
 	
@@ -65,25 +63,3 @@ function ValidateEmail(mail)
 }
 
 document.getElementById("submitButton").onclick = submitAction;
-
-function setCookie(cname, cvalue, exdays, path="/") {
-  const d = new Date();
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
-  let expires = "expires="+ d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path="+path;
-}
-
-function getCookie(cname) {
-  let name = cname + "=";
-  let ca = document.cookie.split(';');
-  for(let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}

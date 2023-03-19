@@ -10,7 +10,7 @@
         <div class="container">
             <header class="header">
                 <form class="search-bar">
-                    <input type="search-name" class="contact-search" name="search-area" placeholder="Search">
+                    <input type="search-name" class="contact-search" name="search-area" id="Search">
                 </form>
                     <i class="fa-sharp fa-solid fa-user-plus"></i>
                 
@@ -18,7 +18,7 @@
 
             <section class="contacts-library">
                 <ul class="contacts-list">
-                    <div class="contact" style="display:none;">
+                    <div class="contact" style="display:;">
                         <hr>
                         <div class="contact-section">
                             <li class="list__item">
@@ -27,37 +27,37 @@
                             </li>
                                 <p> <button id="view" class="view">View</p>
                         </div>
-                        
+                        <div id="myModal" class="modal">
+                                <div class="modal-content">
+                                    <span class="close">&times;</span>
+                                    <div class="contact-box">
+                                        <form>
+                                        <label>First Name</label>
+                                        <input type="text" id="firstName" disabled>
+                                        <label>Last Name</label>
+                                        <input type="text" id="lastName" disabled>
+                                        <label>Email</label>
+                                        <input type="email" id="email" disabled>
+                                        <label>Phone</label>
+                                        <input type="phone" id="phone" disabled>
+                                        <label>Date Created</label>
+                                        <input type="date" id="date" disabled>
+                                        <br><br>
+                                        <div class="icon1">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </div>
+                                        <div class="icon2" id="button" >
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </div> 
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </ul>
             </section>
 
-            <div id="myModal" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <div class="contact-box">
-                        <form>
-                        <label>First Name</label>
-                        <input type="text" placeholder="">
-                        <label>Last Name</label>
-                        <input type="text" placeholder="">
-                        <label>Email</label>
-                        <input type="email" placeholder="">
-                        <label>Phone</label>
-                        <input type="phone" placeholder="">
-                        <label>Date Created</label>
-                        <input type="date" placeholder="">
-                        <br><br>
-                        <div class="icon1">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </div>
-                        <div class="icon2" id="button" >
-                            <i class="fa-solid fa-trash-can"></i>
-                        </div> 
-                        </form>
-                    </div>
-                </div>
-            </div>
+            
             <script>
                 // Get the modal
                 var modal = document.getElementById("myModal");
