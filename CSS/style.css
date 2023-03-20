@@ -227,6 +227,27 @@ a{
     color: gray;
 }
 
+.icon3{
+    text-align: center;
+    font-size: 1.5em;
+    border-radius: 5px;
+    top:50%;
+    width:318px;
+    height:45px;
+    background-color: white;
+    color: #2c2c2c;
+}
+
+.icon3:hover{
+    background-color: #9d9b93;
+    color: white;
+}
+
+.icon3:active{
+    background-color: white;
+    color: gray;
+}
+
 .modal {
     display: none;  
     position: fixed; 
@@ -246,11 +267,27 @@ a{
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 340px;
+    width: 360px;
     height: 430px;
+  }
+
+  .modal-add {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 360px;
+    height: 360px;
   }
   
   .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close1 {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
@@ -264,6 +301,13 @@ a{
     cursor: pointer;
   }
 
+  .close1:hover,
+  .close1:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
   .view {
     background-color: transparent;
     border: none;
@@ -272,4 +316,16 @@ a{
     align-items: center; 
     width:140%;
     padding:10px;
+    border-radius: 5px;
+  }
+
+  .add {
+    background-color: transparent;
+    border: none;
+    height: 60px;
+    width: 60px;
+    font-size: 20px;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center; 
   }
