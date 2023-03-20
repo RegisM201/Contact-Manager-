@@ -12,7 +12,26 @@
                 <form class="search-bar">
                     <input type="search-name" class="contact-search" name="search-area" id="Search">
                 </form>
-                    <i class="fa-sharp fa-solid fa-user-plus"></i>
+                <button id="add" class="add"><i class="fa-sharp fa-solid fa-user-plus"></i></p>
+                <div id="add_modal" class="modal">
+                    <div class="modal-add">
+                        <span class="close1">&times;</span>
+                        <form>
+                            <label>First Name</label>
+                            <input type="text" id="firstName" >
+                            <label>Last Name</label>
+                            <input type="text" id="lastName" >
+                            <label>Email</label>
+                            <input type="email" id="email" >
+                            <label>Phone</label>
+                            <input type="phone" id="phone" >
+                            <br><br>
+                            <div class="icon3" id="button2" >
+                                <i class="fa-solid fa-check"></i>
+                            </div> 
+                        </form>
+                      </div>
+                </div>
                 
             </header>
 
@@ -56,8 +75,8 @@
                 </ul>
             </section>
 
-            
-            <script  src="js/contact.js" >
+
+                <script  src="js/contact.js" >
                 </script>
         </div>
     </body>
