@@ -112,13 +112,14 @@ p{
 }
 
 .header{
-    display: flex;
+    display: block;
     justify-content: space-evenly;
     border-radius: 10px;
     color: #2C2C2C;
     background: -webkit-linear-gradient(left, #087E8B, #c2dace);
     padding: 2em 0;
     align-items: center;
+    height: 60px;
 }
 
 .contact-search{
@@ -126,7 +127,7 @@ p{
     padding: .3em;
     border: 1px solid #fff;
     outline: none;
-    width: 350px;
+    width: 450px;
 }
 
 i{
@@ -328,4 +329,16 @@ a{
     border-radius: 5px;
     display: inline-flex;
     align-items: center; 
+    float: right;
+  }
+
+  .logout {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5em;
+    display: inline-flex;
+    align-items: center; 
+    width: 55px;
+    float: left;
+    padding-left: 10px;
   }
