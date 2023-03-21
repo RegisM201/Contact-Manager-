@@ -2,10 +2,6 @@ const contact_template = document.getElementById("contact_template");
 const contact_list = document.getElementById("list");
 contact_list.removeChild(contact_template);
 
-
-//make request for contacts
-let contacts = new Connection(getCookie("username"), getCookie("password"));
-
 class Connection {
 	constructor(login, password){
 		this.Login = login;
@@ -30,7 +26,6 @@ class Connection {
 		
 
 	}
-
 
 	receiveDelete(request) {
 		let reply = JSON.parse(request.response);
@@ -127,11 +122,16 @@ class Connection {
 	}
 }
 
+//make request for contacts
+let contacts = new Connection(getCookie("username"), getCookie("password"));
+
+
 class Contact {
-	constructor(firstName, lastName, email, phone){
+	constructor(firstName, lastName, email, address, phone){
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.address = address
 		this.phone = phone;
 		this.date = new Date();
 	}
@@ -150,6 +150,7 @@ class Modal {
 		this.node.querySelector("#firstName").value = contact.firstName;
 		this.node.querySelector("#lastName").value = contact.lastName;
 		this.node.querySelector("#email").value = contact.email;
+		this.node.querySelector("#address").value = contact.address;
 		this.node.querySelector("#phone").value = contact.phone;
 		this.node.querySelector("#date").valueAsDate = contact.date;
 
@@ -174,22 +175,23 @@ class Modal {
 		this.node.querySelector("#firstName").disabled = false;
 		this.node.querySelector("#lastName").disabled = false;
 		this.node.querySelector("#email").disabled = false;
+		this.node.querySelector("#address").disabled = false;
 		this.node.querySelector("#phone").disabled = false;
-		this.node.querySelector("#date").disabled = false;
 	}
 	confirmEdit(){
 		let update = new Contact(
 			this.node.querySelector("#firstName").value,
 			this.node.querySelector("#lastName").value,
 			this.node.querySelector("#email").value,
+			this.node.querySelector("#address").value,
 			this.node.querySelector("#phone").value
 			);
 
 		this.node.querySelector("#firstName").disabled = true;
 		this.node.querySelector("#lastName").disabled = true;
 		this.node.querySelector("#email").disabled = true;
+		this.node.querySelector("#address").disabled = true;
 		this.node.querySelector("#phone").disabled = true;
-		this.node.querySelector("#date").disabled = true;
 	}
 }
 
@@ -256,6 +258,9 @@ function getCookie(cname) {
   return "";
 }
 
+function eraseCookie(cname) {   
+    document.cookie = cname+'=; Max-Age=-99999999;';  
+}
 
 /*
 PseudoCode goes like so:
