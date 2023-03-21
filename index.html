@@ -4,7 +4,7 @@
     <link rel="icon" type ="image/x-icon" href="/favicon.ico"/>
   </head>
   <body>
-    <script type="text/javascript" defer>
+    <script type="text/javascript">
         function getCookie(cname) {
                 let name = cname + "=";
                  let ca = document.cookie.split(';');
@@ -20,8 +20,10 @@
         return "";
 }
          let user = getCookie("username");
-         if (user == "") location.href = "login.html";
          alert(user);
+
+         if (user === "") location.href = "login.html";
+         
          location.href = "contactList.html"
     </script>
     <form action="/" method="post">
