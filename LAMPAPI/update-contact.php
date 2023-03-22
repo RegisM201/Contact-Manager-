@@ -23,7 +23,7 @@
 	// Get username and password of user wanting to update a contact.
 	$usr = $in["Login"];
 	$pwd = $in["Password"];
-	$phoneNumber = $in["PhoneNumber"];
+	//$phoneNumber = $in["PhoneNumber"];
 
 	// Declare an id that will store a users id from the User table.
 	$userID = "";
@@ -53,7 +53,7 @@
 	$contactID = "";
 
 	// Query Contacts Table to fetch the ID of the contact that needs to be updated.
-	if ($result = $mysqli -> query("SELECT ID FROM Contacts WHERE UserID = '$userID' AND PhoneNumber = '$phoneNumber'")) {
+	if ($result = $mysqli -> query("SELECT ID FROM Contacts WHERE UserID = '$userID')) {
 		if ($result->num_rows > 0) {
 			// Get ID from Users table.
 			while($row = $result->fetch_assoc()) {
@@ -65,11 +65,11 @@
 	}
 
 	// Update the contact info.
-	$newFirstName = $in["FirstName"];
-	$newLastName = $in["LastName"];
-	$newAddr = $in["Address"];
-	$newEmail = $in["Email"];
-	$newNumber = $in["NewNumber"];
+	$newFirstName = $in["firstName"];
+	$newLastName = $in["lastName"];
+	$newAddr = $in["address"];
+	$newEmail = $in["email"];
+	$newNumber = $in["phone"];
 
 	$sql = "UPDATE Contacts
 			SET FirstName='$newFirstName', LastName='$newLastName', Address='$newAddr',

@@ -36,11 +36,11 @@ if ($result = $mysqli -> query("SELECT ID FROM Users WHERE Login = '$usr' AND Pa
 }
 
 // Add new contact.
-$fName = $in["FirstName"];
-$lName = $in["LastName"];
-$addr = $in["Address"];
-$email = $in["Email"];
-$phoneNum = $in["PhoneNumber"];
+$fName = $in["firstName"];
+$lName = $in["lastName"];
+$addr = $in["address"];
+$email = $in["email"];
+$phoneNum = $in["phone"];
 $userID = $id;
 
 $sql = "INSERT INTO Contacts (FirstName, LastName, Email, PhoneNumber, UserID)

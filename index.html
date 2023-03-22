@@ -7,7 +7,7 @@
     <script type="text/javascript">
         function getCookie(cname) {
                 let name = cname + "=";
-                 let ca = document.cookie.split(';');
+                let ca = document.cookie.split(';');
                 for(let i = 0; i < ca.length; i++) {
                         let c = ca[i];
                         while (c.charAt(0) == ' ') {
@@ -17,10 +17,9 @@
                                 return c.substring(name.length, c.length);
                         }
                 }
-        return "";
-}
+                 return "";
+        }
          let user = getCookie("username");
-         alert(user);
 
          if (user === "") location.href = "login.html";
          
