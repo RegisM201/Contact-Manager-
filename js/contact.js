@@ -10,7 +10,7 @@ class Connection {
 		request.open("POST", "http://147.182.163.107/LAMPAPI/login.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
-   			 if (request.readyState === 4 && request.state === 200) {
+   			 if (request.readyState === 4) {
 				let reply = JSON.parse(request.response);
 				if(reply.err == "No record in relation found") {
 					this.logout();
@@ -31,7 +31,7 @@ class Connection {
 		request.open("POST", "http://147.182.163.107/LAMPAPI/delete.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
-   			 if (request.readyState === 4 && request.status === 200) {
+   			 if (request.readyState === 4) {
       				this.receiveDelete(request);
    			 }
   		}
@@ -66,7 +66,7 @@ class Connection {
 		request.open("POST", "http://147.182.163.107/LAMPAPI/new-contact.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
-   			 if (request.readyState === 4 && request.status === 200) {
+   			 if (request.readyState === 4) {
       				this.receiveContact(request);
    			 }
   		}
@@ -104,7 +104,7 @@ class Connection {
 		request.open("POST", "http://147.182.163.107/LAMPAPI/update-contact.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
-   			 if (request.readyState === 4 && request.status === 200) {
+   			 if (request.readyState === 4) {
       				this.receiveUpdate(request);
    			 }
   		}
@@ -135,7 +135,7 @@ class Connection {
 		request.open("POST", "http://147.182.163.107/LAMPAPI/read.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
-   			 if (request.readyState === 4 && request.status === 200) {
+   			 if (request.readyState === 4) {
       				this.receiveRead(request);
    			 }
   		}
@@ -177,7 +177,7 @@ class Connection {
 		request.open("POST", "http://147.182.163.107/LAMPAPI/search.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
-   			 if (request.readyState === 4 && request.status === 200) {
+   			 if (request.readyState === 4) {
       				this.receiveSearch(request);
    			 }
   		}

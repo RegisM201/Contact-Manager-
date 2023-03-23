@@ -13,7 +13,7 @@ class LoginRequest {
 		request.open("POST", "http://147.182.163.107/LAMPAPI/login.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
-   			 if (request.readyState === 4 && request.state === 200) {
+   			 if (request.readyState === 4) {
       				this.receive(request);
    			 }
   		}
