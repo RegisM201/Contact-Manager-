@@ -31,7 +31,7 @@ if ($result = $mysqli -> query("SELECT ID FROM Users WHERE Login = '$usr' AND Pa
           $id = $row["ID"];
         }
       } else {
-        sendResultInfoAsJson("0 results");
+        returnWithError("0 results");
       }
 }
 

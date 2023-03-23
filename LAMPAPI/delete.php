@@ -39,9 +39,9 @@ if ($result = $mysqli -> query("SELECT ID FROM Users WHERE Login = '$usr' AND Pa
 $userID = $id;
 
 // Query the contact and delete it.
-$stmt = $mysqli->prepare("DELETE FROM Contacts WHERE UserID = $userID AND PhoneNumber=?");
-if ($stmt->bind_param("s", $in["PhoneNumber"]) == 'true') {
-    $stmt->bind_param("s", $in["PhoneNumber"]);
+$stmt = $mysqli->prepare("DELETE FROM Contacts WHERE UserID = $userID AND ID=?");
+if ($stmt->bind_param("s", $in["id"]) == 'true') {
+    $stmt->bind_param("s", $in["id"]);
     $stmt->execute();
 } else {
     echo "Error: " . $sql . "<br>" . $mysqli->error;

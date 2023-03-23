@@ -6,8 +6,22 @@ class Connection {
 	constructor(login, password){
 		this.Login = login;
 		this.Password = password;
+		//check login valid
+		request.open("POST", "http://147.182.163.107/LAMPAPI/login.php", true); //later change to IP address for serverside
+		request.setRequestHeader("Content-type", "application/json");
+		request.onreadystatechange = () => {
+   			 if (request.readyState === 4 && request.state === 200) {
+				let reply = JSON.parse(request.response);
+				if(reply.err == "No record in relation found") {
+					this.logout();
+				}
+   			 }
+  		}
+
+		request.send(message);
 	}
-	sendDelete() {
+	sendDelete(contact) {
+		this.id = contact.id;
 		//make message
 		let message = JSON.stringify(this);
 		console.log('sending: '+message);
@@ -17,7 +31,7 @@ class Connection {
 		request.open("POST", "http://147.182.163.107/LAMPAPI/delete.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
-   			 if (request.readyState === 4) {
+   			 if (request.readyState === 4 && request.status === 200) {
       				this.receiveDelete(request);
    			 }
   		}
@@ -29,12 +43,20 @@ class Connection {
 
 	receiveDelete(request) {
 		let reply = JSON.parse(request.response);
-		
-		//redirect to main page on success
-
-	
+		if (reply.hasOwnProperty("error")) {
+			alert("Request Failed");
+			this.logout();
+		}
+		this.sendRead();
 	}
+
 	sendContact(contact) {
+		this.id = contact.id;
+		this.firstName = contact.firstName;
+		this.lastName = contact.lastName;
+		this.email = contact.email;
+		this.address = contact.address;
+		this.phone =contact.phone;
 		//make message
 		let message = JSON.stringify(this);
 		console.log('sending: '+message);
@@ -44,7 +66,7 @@ class Connection {
 		request.open("POST", "http://147.182.163.107/LAMPAPI/new-contact.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
-   			 if (request.readyState === 4) {
+   			 if (request.readyState === 4 && request.status === 200) {
       				this.receiveContact(request);
    			 }
   		}
@@ -58,13 +80,21 @@ class Connection {
 	receiveContact(request) {
 		let reply = JSON.parse(request.response);
 		if (reply.hasOwnProperty("error")) {
-
+			alert("Request Failed");
+			this.logout();
+			}
 		}
-		//redirect to main page on success
+		//handle errors
 
 	
 	}
 	sendUpdate(contact) {
+		this.id = contact.id;
+		this.firstName = contact.firstName;
+		this.lastName = contact.lastName;
+		this.email = contact.email;
+		this.address = contact.address;
+		this.phone =contact.phone;
 		//make message
 		let message = JSON.stringify(this);
 		console.log('sending: '+message);
@@ -74,7 +104,7 @@ class Connection {
 		request.open("POST", "http://147.182.163.107/LAMPAPI/update-contact.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
-   			 if (request.readyState === 4) {
+   			 if (request.readyState === 4 && request.status === 200) {
       				this.receiveUpdate(request);
    			 }
   		}
@@ -87,8 +117,11 @@ class Connection {
 
 	receiveUpdate(request) {
 		let reply = JSON.parse(request.response);
-		
-		//redirect to main page on success
+		if (reply.hasOwnProperty("error")) {
+			alert("Request Failed");
+			this.logout();
+		}
+		this.sendRead();
 
 	
 	}
@@ -102,7 +135,7 @@ class Connection {
 		request.open("POST", "http://147.182.163.107/LAMPAPI/read.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
-   			 if (request.readyState === 4) {
+   			 if (request.readyState === 4 && request.status === 200) {
       				this.receiveRead(request);
    			 }
   		}
@@ -112,63 +145,145 @@ class Connection {
 
 	}
 
-
 	receiveRead(request) {
 		let reply = JSON.parse(request.response);
-		
-		//redirect to main page on success
-
+		if (reply.hasOwnProperty("error")) {
+			alert("Request Failed");
+			this.logout();
+		}
+		//reconstruct all modals, and append to contact_list, as visible
+		contact_list.innerHTML = "";
+		for (let i = 0; i < reply.length; i++) {
+			let contact = new Contact(
+				reply[i]["ID"],
+				reply[i]["FirstName"],
+				reply[i]["LastName"],
+				reply[i]["Email"],
+				reply[i]["Address"],
+				reply[i]["PhoneNumber"]
+			)
+		let modal = new Modal("contact_" + i, contact);
+		list.appendChild(modal.node);
 	
+	}
+
+	sendSearch(string) {
+		//make message
+		let message = JSON.stringify({"search" : string});
+		console.log('sending: '+message);
+		//send message AJAX request
+		let request= new XMLHttpRequest();
+		
+		request.open("POST", "http://147.182.163.107/LAMPAPI/search.php", true); //later change to IP address for serverside
+		request.setRequestHeader("Content-type", "application/json");
+		request.onreadystatechange = () => {
+   			 if (request.readyState === 4 && request.status === 200) {
+      				this.receiveSearch(request);
+   			 }
+  		}
+
+		request.send(message);
+		
+
+	}
+
+	receiveSearch(request) {
+		let reply = JSON.parse(request.response);
+		if (reply.hasOwnProperty("error")) {
+			alert("Request Failed");
+			this.logout();
+		}
+		//reconstruct all modals, and append to contact_list, as visible
+		contact_list.innerHTML = "";
+		for (let i = 0; i < reply.length; i++) {
+			let contact = new Contact(
+				reply[i]["ID"],
+				reply[i]["FirstName"],
+				reply[i]["LastName"],
+				reply[i]["Email"],
+				reply[i]["Address"],
+				reply[i]["PhoneNumber"]
+			)
+		let modal = new Modal("contact_" + i, contact);
+		list.appendChild(modal.node);
+	
+	}
+
+	logout() {
+		eraseCookie("username");
+		eraseCookie("password");
+		href = "login.html";
 	}
 }
 
 //make request for contacts
 let contacts = new Connection(getCookie("username"), getCookie("password"));
-
+document.getElementById("logout").onclick = () => {contacts.logout();}
+contacts.sendRead();
+document.getElementById("add").onclick = () => {
+	const modal = new Modal("", new Contact("","","","","",""));
+	contact_list.appendChild(modal.node);
+	modal.newContact();
+}
 
 class Contact {
-	constructor(firstName, lastName, email, address, phone){
+	constructor(id, firstName, lastName, email, address, phone){
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.address = address
 		this.phone = phone;
-		this.date = new Date();
 	}
 }
 
 class Modal {
 	constructor(id, contact){
+		this.contact = contact;
 		this.node = contact_template.cloneNode(true);
-		let modal = this.node.querySelector("#myModal");
+		this.modal = this.node.querySelector("#myModal");
 		this.node.setAttribute("id", id);
-		let view = this.node.querySelector("#view");
-		let span = this.node.querySelector("span")
+		this.view = this.node.querySelector("#view");
+		this.span = this.node.querySelector("span")
 
-		this.node.querySelector('#contact_name').innerHTML = contact.firstName + " " + contact.lastName;
+		this.acceptBtn = this.node.querySelector("#acceptBtn");
+		this.deleteBtn = this.node.querySelector("#deleteBtn");
+		this.editBtn = this.node.querySelector("#editBtn");
 
-		this.node.querySelector("#firstName").value = contact.firstName;
-		this.node.querySelector("#lastName").value = contact.lastName;
-		this.node.querySelector("#email").value = contact.email;
-		this.node.querySelector("#address").value = contact.address;
-		this.node.querySelector("#phone").value = contact.phone;
-		this.node.querySelector("#date").valueAsDate = contact.date;
+		this.resetContact();
 
-		view.onclick = function() {
+		this.view.onclick = function() {
                   modal.style.display = "block";
                 }
                 
                 // When the user clicks on <span> (x), close the modal
-                span.onclick = function() {
-                 	modal.style.display = "none";
+                this.close = () => {
+                 	this.modal.style.display = "none";
+                 	resetContact();
                 }
+
+
+                span.onclick = this.close;
                 
                 // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function(event) {
+                window.onclick = (event) => {
                 	if (event.target == modal) {
-                 		modal.style.display = "none";
+                 		this.close();
                 	}
                 }
+
+                this.editBtn.onclick = () =>{this.beginEdit();}
+                this.deleteBtn.onclick = () => {contacts.sendDelete(this.contact.id); this.close();}
+                this.acceptBtn.onclick = () => {this.confirmEdit(); contacts.sendUpdate(this.contact);}
+
+	}
+	resetContact() {
+		this.node.querySelector("#firstName").value = this.contact.firstName;
+		this.node.querySelector("#lastName").value = this.contact.lastName;
+		this.node.querySelector("#email").value = this.contact.email;
+		this.node.querySelector("#address").value = this.contact.address;
+		this.node.querySelector("#phone").value = this.contact.phone;
+		this.node.querySelector('#contact_name').innerHTML = this.contact.firstName + " " + this.contact.lastName;
 	}
 
 	beginEdit(){
@@ -177,63 +292,54 @@ class Modal {
 		this.node.querySelector("#email").disabled = false;
 		this.node.querySelector("#address").disabled = false;
 		this.node.querySelector("#phone").disabled = false;
+		this.editBtn.style.display = "none";
+		this.deleteBtn.style.display = "none";
+		this.acceptBtn.style.display = "block";
 	}
 	confirmEdit(){
 		let update = new Contact(
-			this.node.querySelector("#firstName").value,
-			this.node.querySelector("#lastName").value,
-			this.node.querySelector("#email").value,
-			this.node.querySelector("#address").value,
-			this.node.querySelector("#phone").value
+				this.contact.id,
+				this.node.querySelector("#firstName").value,
+				this.node.querySelector("#lastName").value,
+				this.node.querySelector("#email").value,
+				this.node.querySelector("#address").value,
+				this.node.querySelector("#phone").value
 			);
 
-		this.node.querySelector("#firstName").disabled = true;
-		this.node.querySelector("#lastName").disabled = true;
-		this.node.querySelector("#email").disabled = true;
-		this.node.querySelector("#address").disabled = true;
-		this.node.querySelector("#phone").disabled = true;
+		//send request, passing update
+		this.contact = update;
+		this.close();
+
+	}
+	newContact() {
+		beginEdit();
+		this.acceptBtn.onclick = () => {this.confirmEdit(); contacts.sendContact(this.contact);}
+
+		 window.onclick = (event) => {
+                	if (event.target == modal) {
+                 		this.close();
+                 		contact_list.removeChild(this.node);
+                	}
+                }
+                this.span.onclick = () => {
+                	this.close();
+                 	contact_list.removeChild(this.node);
+                }
 	}
 }
 
-
-
-const readAction = function (){
+document.getElementById("Search").keyup = () => {
 
 }
 
-const searchAction = function (){
-
-}
-
-const deleteAction = function (){
-
-}
-
-const createAction = function () {
-
-}
-
-const editAction = function () {
-
-}
-
-/*
-
-if (!ValidateEmail(email.value)) {
-		console.log("rejected.");
-		const error = document.createElement("p");
-		const message = document.createTextNode("you entered an invalid email");
-	}
-*/
 
 function ValidateEmail(mail) 
 {
- if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
-  {
-    return (true)
-  }
-    //alert("You have entered an invalid email address!")
-    return (false)
+	if (/^(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)$|^$/.test(mail))
+ 	{
+		 return (true)
+	}
+	return (false)
 }
 
 function setCookie(cname, cvalue, exdays, path="/") {
@@ -261,10 +367,3 @@ function getCookie(cname) {
 function eraseCookie(cname) {   
     document.cookie = cname+'=; Max-Age=-99999999;';  
 }
-
-/*
-PseudoCode goes like so:
-grab cookie and post to get contacts
-load contacts to modalList using cloneNode and appendNode
-Interface each of these modals using some generic functionalities. for CRUD,
-*/

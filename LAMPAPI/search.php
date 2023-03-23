@@ -46,6 +46,6 @@
 	// Verify the response is an array, then wrap it as a json array.
 	function sendResultInfoAsJson($obj) {
 		header('Content-type: application/json');
-		echo is_array($obj) ? json_encode($obj) : 'No contacts found';
+		echo is_array($obj) ? json_encode($obj) : '[]';
 	}
 ?>

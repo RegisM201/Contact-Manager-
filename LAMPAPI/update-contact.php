@@ -74,7 +74,7 @@
 	$sql = "UPDATE Contacts
 			SET FirstName='$newFirstName', LastName='$newLastName', Address='$newAddr',
 			Email='$newEmail', PhoneNumber='$newNumber'
-			WHERE ID='$contactID' AND UserID='$userID'";
+			WHERE ID='$contactID' AND UserID='$userID';
 
 	if ($mysqli->query($sql) === TRUE) {
 		echo "Contact updated successfully";

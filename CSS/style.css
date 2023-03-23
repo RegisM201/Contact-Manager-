@@ -250,7 +250,6 @@ a{
 }
 
 .modal {
-    display: none;  
     position: fixed; 
     z-index: 1; 
     padding-top: 100px; 
@@ -270,15 +269,6 @@ a{
     border: 1px solid #888;
     width: 360px;
     height: 430px;
-  }
-
-  .modal-add {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 360px;
-    height: 360px;
   }
   
   .close {

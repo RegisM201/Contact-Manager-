@@ -14,33 +14,10 @@
                     <input type="search-name" class="contact-search" name="search-area" id="Search">
                 </form>
                 <button id="add" class="add"><i class="fa-sharp fa-solid fa-user-plus"></i></p>
-                <div id="add_modal" class="modal">
-                    <div class="modal-add">
-                        <span class="close1">&times;</span>
-                        <form>
-                                <label>First Name</label>
-                                <input type="text" id="firstName" >
-                                <label>Last Name</label>
-                                <input type="text" id="lastName" >
-                                <label>Email</label>
-                                <input type="email" id="email" >
-                                <label>Phone</label>
-                                <input type="phone" id="phone" >
-                                <label>Address</label>
-                                <input type="address" id="address" >
-                            <br><br>
-                            <div class="icon3" id="button2" >
-                                <i class="fa-solid fa-check"></i>
-                            </div> 
-                        </form>
-                      </div>
-                </div>
-                
             </header>
-
             <section class="contacts-library">
                 <ul id="list" class="contacts-list">
-                    <div id="contact_template" class="contact" style="display:none;">
+                    <div id="contact_template" class="contact">
                         <hr>
                         <div class="contact-section">
                             <li class="list__item">
@@ -63,15 +40,18 @@
                                         <input type="tel" id="phone" disabled>
                                         <label>Address</label>
                                         <input type="address" id="address" disabled>
-                                        <label>Date Created</label>
-                                        <input type="date" id="date" disabled>
                                         <br><br>
-                                        <div id = "editBtn" class="icon1">
-                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        <div id = "buttons">
+                                                <div id = "editBtn" class="icon1">
+                                                         <i class="fa-solid fa-pen-to-square"></i>
+                                                 </div>
+                                                <div id = "deleteBtn" class="icon2" >
+                                                         <i class="fa-solid fa-trash-can"></i>
+                                                </div> 
+                                                <div class="icon3" id="acceptBtn" style = "display:none">
+                                                        <i class="fa-solid fa-check"></i>
+                                                </div> 
                                         </div>
-                                        <div id = "deleteBtn" class="icon2" >
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </div> 
                                         </form>
                                     </div>
                                 </div>
@@ -79,8 +59,6 @@
                     </div>
                 </ul>
             </section>
-
-
                 <script  src="js/contact.js" >
                 </script>
         </div>

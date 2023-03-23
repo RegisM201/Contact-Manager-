@@ -13,7 +13,7 @@ class LoginRequest {
 		request.open("POST", "http://147.182.163.107/LAMPAPI/login.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
-   			 if (request.readyState === 4) {
+   			 if (request.readyState === 4 && request.state === 200) {
       				this.receive(request);
    			 }
   		}
@@ -44,15 +44,6 @@ const submitAction = function (){
 	let request = new LoginRequest(document.getElementById("username").value, document.getElementById("password").value);
 	request.send();
 }
-
-
-/*
-if (!ValidateEmail(email.value)) {
-		console.log("rejected.");
-		const error = document.createElement("p");
-		const message = document.createTextNode("you entered an invalid email");
-	}
-*/
 
 function ValidateEmail(mail) 
 {
