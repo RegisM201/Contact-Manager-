@@ -23,8 +23,8 @@
 		exit();
 	}
 	// Get username and password from front end.
-$usr = $in["Login"];
-$pwd = $in["Password"];
+$usr = $inData["Login"];
+$pwd = $inData["Password"];
 $id = "";
 
 // Query Users Table to fetch the ID of the user who wants to read their contact list.
