@@ -28,7 +28,7 @@ $pwd = $inData["Password"];
 $id = "";
 
 // Query Users Table to fetch the ID of the user who wants to read their contact list.
-if ($result = $mysqli -> query("SELECT ID FROM Users WHERE Login = '$usr' AND Password = '$pwd'")) {
+if ($result = $connection -> query("SELECT ID FROM Users WHERE Login = '$usr' AND Password = '$pwd'")) {
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
