@@ -77,7 +77,7 @@
 			WHERE ID='$contactID' AND UserID='$userID';
 
 	if ($mysqli->query($sql) === TRUE) {
-		echo "'message': 'Contact updated successfully'";
+		//echo "'message': 'Contact updated successfully'";
 	} else {
 		echo "'error': " . $sql . "<br>" . $mysqli->error;
 	}
