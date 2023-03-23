@@ -144,12 +144,12 @@ class Connection {
 		contact_list.innerHTML = "";
 		for (let i = 0; i < reply.length; i++) {
 			let contact = new Contact(
-				reply[i]["ID"],
-				reply[i]["FirstName"],
-				reply[i]["LastName"],
-				reply[i]["Email"],
-				reply[i]["Address"],
-				reply[i]["PhoneNumber"]
+				reply[i][0],
+				reply[i][2],
+				reply[i][3],
+				reply[i][4],
+				reply[i][5],
+				reply[i][6]
 			)
 		let modal = new Modal("contact_" + i, contact);
 		list.appendChild(modal.node);
