@@ -325,8 +325,8 @@ class Modal {
 }
 
 const searchbar = document.getElementById("Search");
-search.keyup = () => {
-	contacts.sendSearch(search.value);
+searchbar.keyup = () => {
+	contacts.sendSearch(searchbar.value);
 }
 
 
