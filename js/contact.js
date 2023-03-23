@@ -7,6 +7,7 @@ class Connection {
 		this.Login = login;
 		this.Password = password;
 		//check login valid
+		let request= new XMLHttpRequest();
 		request.open("POST", "http://147.182.163.107/LAMPAPI/login.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
