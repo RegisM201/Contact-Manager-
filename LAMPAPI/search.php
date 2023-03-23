@@ -42,14 +42,14 @@ if ($result = $mysqli -> query("SELECT ID FROM Users WHERE Login = '$usr' AND Pa
 	$patternMatcher = "%" . $searchStr . "%";
 
 	// Query the contact information.
-	$stmt = $connection->prepare("SELECT * FROM Contacts WHERE UserID = $id AND FirstName like ?");
+	$stmt = $connection->prepare("SELECT * FROM Contacts WHERE UserID = ? AND (FirstName like ? OR LastName like ? OR Email like ? OR Address like ? OR PhoneNumber like ?)");
 
 	// Represents our pattern matcher data type which is a string('s') because FirstName is a string.
-	$bindType = "s";
+	$bindType = "ssssss";
 
 	// Verify that the pattern string can be binded to '?' part of the sql statment above, then execute query.
-	if ($stmt->bind_param($bindType, $patternMatcher) == 'true') {
-		$stmt->bind_param("s", $patternMatcher);
+	if ($stmt->bind_param($bindType, $id, $patternMatcher, $patternMatcher, $patternMatcher, $patternMatcher, $patternMatcher) == 'true') {
+		$stmt->bind_param("ssssss", $id, $patternMatcher, $patternMatcher, $patternMatcher, $patternMatcher, $patternMatche);
 		$stmt->execute();
 	}
 
