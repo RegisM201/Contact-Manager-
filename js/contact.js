@@ -37,8 +37,6 @@ class Connection {
   		}
 
 		request.send(message);
-		
-
 	}
 
 	receiveDelete(request) {
@@ -72,8 +70,6 @@ class Connection {
   		}
 
 		request.send(message);
-		
-
 	}
 
 
@@ -82,12 +78,9 @@ class Connection {
 		if (reply.hasOwnProperty("error")) {
 			alert("Request Failed");
 			this.logout();
-			}
 		}
-		//handle errors
-
-	
 	}
+
 	sendUpdate(contact) {
 		this.id = contact.id;
 		this.firstName = contact.firstName;
@@ -110,10 +103,7 @@ class Connection {
   		}
 
 		request.send(message);
-		
-
 	}
-
 
 	receiveUpdate(request) {
 		let reply = JSON.parse(request.response);
@@ -122,9 +112,8 @@ class Connection {
 			this.logout();
 		}
 		this.sendRead();
-
-	
 	}
+
 	sendRead() {
 		//make message
 		let message = JSON.stringify(this);
@@ -139,10 +128,7 @@ class Connection {
       				this.receiveRead(request);
    			 }
   		}
-
 		request.send(message);
-		
-
 	}
 
 	receiveRead(request) {
@@ -164,7 +150,7 @@ class Connection {
 			)
 		let modal = new Modal("contact_" + i, contact);
 		list.appendChild(modal.node);
-	
+		}
 	}
 
 	sendSearch(string) {
@@ -206,7 +192,7 @@ class Connection {
 			)
 		let modal = new Modal("contact_" + i, contact);
 		list.appendChild(modal.node);
-	
+		}
 	}
 
 	logout() {
