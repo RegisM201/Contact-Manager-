@@ -212,6 +212,7 @@ contacts.sendRead();
 document.getElementById("add").onclick = () => {
 	const modal = new Modal("", new Contact("","","","","",""));
 	contact_list.appendChild(modal.node);
+	modal.modal.style.display = "block";
 	modal.newContact();
 }
 
