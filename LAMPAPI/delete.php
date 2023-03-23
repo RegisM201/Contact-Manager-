@@ -44,7 +44,7 @@ if ($stmt->bind_param("s", $in["id"]) == 'true') {
     $stmt->bind_param("s", $in["id"]);
     $stmt->execute();
 } else {
-    echo "Error: " . $sql . "<br>" . $mysqli->error;
+    echo "'error': " . $sql . "<br>" . $mysqli->error;
 }
 
 function getRequestInfo()

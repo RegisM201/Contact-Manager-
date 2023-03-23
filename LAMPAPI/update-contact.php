@@ -77,9 +77,9 @@
 			WHERE ID='$contactID' AND UserID='$userID';
 
 	if ($mysqli->query($sql) === TRUE) {
-		echo "Contact updated successfully";
+		echo "'message': 'Contact updated successfully'";
 	} else {
-		echo "Error: " . $sql . "<br>" . $mysqli->error;
+		echo "'error': " . $sql . "<br>" . $mysqli->error;
 	}
 
 	function getRequestInfo() {

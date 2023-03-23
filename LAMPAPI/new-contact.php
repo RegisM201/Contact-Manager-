@@ -46,9 +46,9 @@ $userID = $id;
 $sql = "INSERT INTO Contacts (FirstName, LastName, Email, PhoneNumber, UserID)
 VALUES ('$fName', '$lName', '$email', '$phoneNum', '$userID')";
 if ($mysqli->query($sql) === TRUE) {
-    echo "New contact added successfully";
+   echo "'message': 'Contact updated successfully'";
 } else {
-    echo "Error: " . $sql . "<br>" . $mysqli->error;
+    echo "'error': " . $sql . "<br>" . $mysqli->error;
 }
 
 function getRequestInfo()
