@@ -232,7 +232,7 @@ class Modal {
 		this.modal = this.node.querySelector("#myModal");
 		this.node.setAttribute("id", id);
 		this.view = this.node.querySelector("#view");
-		this.span = this.node.querySelector("#span")
+		this.span = this.node.querySelector("#span");
 
 		this.acceptBtn = this.node.querySelector("#acceptBtn");
 		this.deleteBtn = this.node.querySelector("#deleteBtn");
@@ -251,7 +251,7 @@ class Modal {
                 }
 
 
-                span.onclick = this.close;
+                this.span.onclick = this.close;
                 
                 // When the user clicks anywhere outside of the modal, close it
                 window.onclick = (event) => {
