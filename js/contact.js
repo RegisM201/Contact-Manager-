@@ -236,7 +236,7 @@ class Contact {
 
 class Modal {
 	constructor(id, contact){
-		this.contact = contact;
+		this.contact = Object.assign({},contact);
 		this.node = contact_template.cloneNode(true);
 		this.modal = this.node.querySelector("#myModal");
 		this.node.setAttribute("id", id);
