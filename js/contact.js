@@ -140,14 +140,11 @@ class Connection {
 	}
 
 	receiveRead(request) {
-		if (request.response) {
-			let reply = JSON.parse(request.response);
-			if (reply.hasOwnProperty("error")) {
+		let reply = JSON.parse(request.response);
+		if (reply.hasOwnProperty("error")) {
 			alert("Request Failed");
 			this.logout();
-			}
 		}
-		console.log(reply);
 		//reconstruct all modals, and append to contact_list, as visible
 		contact_list.innerHTML = "";
 		for (let i = 0; i < reply.length; i++) {
@@ -185,12 +182,10 @@ class Connection {
 	}
 
 	receiveSearch(request) {
-		if (request.response) {
-			let reply = JSON.parse(request.response);
-			if (reply.hasOwnProperty("error")) {
+		let reply = JSON.parse(request.response);
+		if (reply.hasOwnProperty("error")) {
 			alert("Request Failed");
 			this.logout();
-			}
 		}
 		//reconstruct all modals, and append to contact_list, as visible
 		contact_list.innerHTML = "";
