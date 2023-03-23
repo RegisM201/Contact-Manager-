@@ -85,6 +85,7 @@ class Connection {
 			this.logout();
 			}
 		}
+		this.sendRead();
 	}
 
 	sendUpdate(contact) {
@@ -323,8 +324,9 @@ class Modal {
 	}
 }
 
-document.getElementById("Search").keyup = () => {
-
+const searchbar = document.getElementById("Search");
+search.keyup = () => {
+	contacts.sendSearch(search.value);
 }
 
 
