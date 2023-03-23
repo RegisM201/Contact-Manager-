@@ -241,13 +241,13 @@ class Modal {
 		this.resetContact();
 
 		this.view.onclick = function() {
-                  modal.style.display = "block";
+          		this.modal.style.display = "block";
                 }
                 
                 // When the user clicks on <span> (x), close the modal
                 this.close = () => {
                  	this.modal.style.display = "none";
-                 	resetContact();
+                 	this.resetContact();
                 }
 
 
@@ -255,7 +255,7 @@ class Modal {
                 
                 // When the user clicks anywhere outside of the modal, close it
                 window.onclick = (event) => {
-                	if (event.target == modal) {
+                	if (event.target == this.modal) {
                  		this.close();
                 	}
                 }
@@ -300,11 +300,11 @@ class Modal {
 
 	}
 	newContact() {
-		beginEdit();
+		this.beginEdit();
 		this.acceptBtn.onclick = () => {this.confirmEdit(); contacts.sendContact(this.contact);}
 
 		 window.onclick = (event) => {
-                	if (event.target == modal) {
+                	if (event.target == this.modal) {
                  		this.close();
                  		contact_list.removeChild(this.node);
                 	}
