@@ -147,8 +147,8 @@ class Connection {
 				reply[i][0],
 				reply[i][2],
 				reply[i][3],
-				reply[i][4],
 				reply[i][5],
+				reply[i][4],
 				reply[i][6]
 			)
 		let modal = new Modal("contact_" + i, contact);
