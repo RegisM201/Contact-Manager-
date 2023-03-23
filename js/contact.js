@@ -42,10 +42,12 @@ class Connection {
 	}
 
 	receiveDelete(request) {
-		let reply = JSON.parse(request.response);
-		if (reply.hasOwnProperty("error")) {
+		if (request.response) {
+			let reply = JSON.parse(request.response);
+			if (reply.hasOwnProperty("error")) {
 			alert("Request Failed");
 			this.logout();
+			}
 		}
 		this.sendRead();
 	}
@@ -76,10 +78,12 @@ class Connection {
 
 
 	receiveContact(request) {
-		let reply = JSON.parse(request.response);
-		if (reply.hasOwnProperty("error")) {
+		if (request.response) {
+			let reply = JSON.parse(request.response);
+			if (reply.hasOwnProperty("error")) {
 			alert("Request Failed");
 			this.logout();
+			}
 		}
 	}
 
@@ -108,10 +112,12 @@ class Connection {
 	}
 
 	receiveUpdate(request) {
-		let reply = JSON.parse(request.response);
-		if (reply.hasOwnProperty("error")) {
+		if (request.response) {
+			let reply = JSON.parse(request.response);
+			if (reply.hasOwnProperty("error")) {
 			alert("Request Failed");
 			this.logout();
+			}
 		}
 		this.sendRead();
 	}
@@ -134,10 +140,12 @@ class Connection {
 	}
 
 	receiveRead(request) {
-		let reply = JSON.parse(request.response);
-		if (reply.hasOwnProperty("error")) {
+		if (request.response) {
+			let reply = JSON.parse(request.response);
+			if (reply.hasOwnProperty("error")) {
 			alert("Request Failed");
 			this.logout();
+			}
 		}
 		console.log(reply);
 		//reconstruct all modals, and append to contact_list, as visible
@@ -177,21 +185,23 @@ class Connection {
 	}
 
 	receiveSearch(request) {
-		let reply = JSON.parse(request.response);
-		if (reply.hasOwnProperty("error")) {
+		if (request.response) {
+			let reply = JSON.parse(request.response);
+			if (reply.hasOwnProperty("error")) {
 			alert("Request Failed");
 			this.logout();
+			}
 		}
 		//reconstruct all modals, and append to contact_list, as visible
 		contact_list.innerHTML = "";
 		for (let i = 0; i < reply.length; i++) {
 			let contact = new Contact(
-				reply[i]["ID"],
-				reply[i]["FirstName"],
-				reply[i]["LastName"],
-				reply[i]["Email"],
-				reply[i]["Address"],
-				reply[i]["PhoneNumber"]
+				reply[i][0],
+				reply[i][2],
+				reply[i][3],
+				reply[i][5],
+				reply[i][4],
+				reply[i][6]
 			)
 		let modal = new Modal("contact_" + i, contact);
 		list.appendChild(modal.node);
