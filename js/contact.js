@@ -326,9 +326,9 @@ class Modal {
 }
 
 const searchbar = document.getElementById("Search");
-searchbar.keyup = () => {
+searchbar.addEventListener("keyup",() => {
 	contacts.sendSearch(searchbar.value);
-}
+});
 
 
 function ValidateEmail(mail) 
