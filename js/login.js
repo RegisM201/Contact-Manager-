@@ -26,10 +26,10 @@ class LoginRequest {
 	receive(request) {
 		let reply = JSON.parse(request.response);
 		console.log(reply)
-		if(reply.err == "No record in relation found") {
-			document.getElementById("error").setAttribute("style","display:");  return;
+		if(reply.error == "No record in relation found") {
+			document.getElementById("error").style.display = 'block';  return;
 		}
-		document.getElementById("error").setAttribute("style","display:none");
+		document.getElementById("error").style.display = "none";
 		setCookie("username",this.Login, 1);
 		setCookie("password", this.Password, 1);
 		location.href = "contactList.html";
