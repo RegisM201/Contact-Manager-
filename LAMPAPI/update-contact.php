@@ -53,7 +53,7 @@
 	$contactID = "";
 
 	// Query Contacts Table to fetch the ID of the contact that needs to be updated.
-	if ($result = $mysqli -> query("SELECT ID FROM Contacts WHERE UserID = '$userID')) {
+	if ($result = $mysqli -> query("SELECT ID FROM Contacts WHERE UserID = '$userID'")) {
 		if ($result->num_rows > 0) {
 			// Get ID from Users table.
 			while($row = $result->fetch_assoc()) {
