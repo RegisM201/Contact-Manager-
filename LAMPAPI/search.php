@@ -49,7 +49,6 @@ if ($result = $mysqli -> query("SELECT ID FROM Users WHERE Login = '$usr' AND Pa
 
 	// Verify that the pattern string can be binded to '?' part of the sql statment above, then execute query.
 	if ($stmt->bind_param($bindType, $id, $patternMatcher, $patternMatcher, $patternMatcher, $patternMatcher, $patternMatcher) == 'true') {
-		$stmt->bind_param("ssssss", $id, $patternMatcher, $patternMatcher, $patternMatcher, $patternMatcher, $patternMatche);
 		$stmt->execute();
 	}
 
