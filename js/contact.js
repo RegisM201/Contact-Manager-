@@ -240,7 +240,7 @@ class Modal {
 
 		this.resetContact();
 
-		this.view.onclick = function() {
+		this.view.onclick = () => {
           		this.modal.style.display = "block";
                 }
                 
