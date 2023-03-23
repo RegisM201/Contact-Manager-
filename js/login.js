@@ -27,7 +27,8 @@ class LoginRequest {
 		let reply = JSON.parse(request.response);
 		console.log(reply)
 		if(reply.error == "No record in relation found") {
-			document.getElementById("error").style.display = 'block';  return;
+			document.getElementById("error").style.display = 'block'; 
+			return;
 		}
 		document.getElementById("error").style.display = "none";
 		setCookie("username",this.Login, 1);
