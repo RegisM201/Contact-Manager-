@@ -164,7 +164,8 @@ class Connection {
 
 	sendSearch(string) {
 		//make message
-		let message = JSON.stringify({"search" : string});
+		this.search = string;
+		let message = JSON.stringify(this);
 		console.log('sending: '+message);
 		//send message AJAX request
 		let request= new XMLHttpRequest();
