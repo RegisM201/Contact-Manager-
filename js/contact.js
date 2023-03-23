@@ -206,7 +206,7 @@ class Connection {
 	logout() {
 		eraseCookie("username");
 		eraseCookie("password");
-		href = "login.html";
+		location.href = "login.html";
 	}
 }
 
