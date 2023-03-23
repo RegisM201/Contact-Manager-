@@ -19,6 +19,23 @@
 		echo "Failed to connect to MySQL: " . $connection->connect_error;
 		exit();
 	}
+	// Get username and password from front end.
+$usr = $in["Login"];
+$pwd = $in["Password"];
+$id = "";
+
+// Query Users Table to fetch the ID of the user who wants to read their contact list.
+if ($result = $mysqli -> query("SELECT ID FROM Users WHERE Login = '$usr' AND Password = '$pwd'")) {
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+        //   echo "id: " . $row["ID"]. "<br>";
+          $id = $row["ID"];
+        }
+      } else {
+        returnWithError("0 results");
+      }
+}
 
 	// Define search pattern.
 	$searchStr = $inData["search"];
@@ -26,7 +43,7 @@
 
 	// Query the contact information.
 	$stmt = $connection->prepare("SELECT FirstName, LastName,
-				Address, Email, PhoneNumber FROM Contacts WHERE FirstName like ?");
+				Address, Email, PhoneNumber FROM Contacts WHERE FirstName like ? AND UserID = $id");
 
 	// Represents our pattern matcher data type which is a string('s') because FirstName is a string.
 	$bindType = "s";
