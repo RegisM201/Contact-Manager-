@@ -139,6 +139,7 @@ class Connection {
 			alert("Request Failed");
 			this.logout();
 		}
+		console.log(reply);
 		//reconstruct all modals, and append to contact_list, as visible
 		contact_list.innerHTML = "";
 		for (let i = 0; i < reply.length; i++) {
