@@ -43,8 +43,8 @@ $email = $in["email"];
 $phoneNum = $in["phone"];
 $userID = $id;
 
-$sql = "INSERT INTO Contacts (FirstName, LastName, Email, PhoneNumber, UserID)
-VALUES ('$fName', '$lName', '$email', '$phoneNum', '$userID')";
+$sql = "INSERT INTO Contacts (FirstName, LastName, Address, Email, PhoneNumber, UserID)
+VALUES ('$fName', '$lName', '$addr', '$email', '$phoneNum', '$userID')";
 if ($mysqli->query($sql) === TRUE) {
    echo "'message': 'Contact updated successfully'";
 } else {
