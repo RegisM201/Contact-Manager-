@@ -128,13 +128,12 @@ p{
     border: 1px solid #fff;
     outline: none;
     max-width: 450px;
-    width:70%;
+    width:95%;
     height: 52px;
 }
 
 .search-bar{
-    width: 90%;
-    right-margin: 10%;
+    width: 100%;
 }
 
 i{
@@ -339,4 +338,5 @@ a{
     width: 55px;
     float: left;
     padding-left: 10px;
+    width:80%;
   }
