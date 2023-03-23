@@ -127,9 +127,12 @@ p{
     padding: .3em;
     border: 1px solid #fff;
     outline: none;
-    max-width: 450px;
-    width: 75%;
     height: 52px;
+}
+
+.search-bar{
+    max-width: 450px;
+    width: 95%;
 }
 
 i{
