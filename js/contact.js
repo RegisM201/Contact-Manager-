@@ -268,7 +268,7 @@ class Modal {
                 }
 
                 this.editBtn.onclick = () =>{this.beginEdit();}
-                this.deleteBtn.onclick = () => {contacts.sendDelete(this.contact.id); this.close();}
+                this.deleteBtn.onclick = () => {contacts.sendDelete(this.contact); this.close();}
                 this.acceptBtn.onclick = () => {this.confirmEdit(); contacts.sendUpdate(this.contact);}
 
 	}
