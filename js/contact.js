@@ -81,8 +81,13 @@ class Connection {
 		if (request.response) {
 			let reply = JSON.parse(request.response);
 			if (reply.hasOwnProperty("error")) {
-			alert("Request Failed");
-			this.logout();
+                                if(reply.error === 2) {
+                                        //display error and try again
+                                        alert("Invalid Contact: Has No First Name");
+                                        return;
+                                }
+                                alert("Request Failed");
+                                this.logout();
 			}
 		}
 		this.sendRead();
@@ -116,8 +121,13 @@ class Connection {
 		if (request.response) {
 			let reply = JSON.parse(request.response);
 			if (reply.hasOwnProperty("error")) {
-			alert("Request Failed");
-			this.logout();
+                                 if(reply.error === 2) {
+                                        //display error and try again
+                                        alert("Invalid Contact: Has No First Name");
+                                        return;
+                                }
+        			alert("Request Failed");
+        			this.logout();
 			}
 		}
 		this.sendRead();

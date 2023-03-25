@@ -21,6 +21,10 @@ if ($mysqli->connect_error) {
 $usr = $in["Login"];
 $pwd = $in["Password"];
 $id = "";
+$firstName =$in["firstName"];
+if ($firstName === "") {
+    returnWithError("2");
+}
 
 // Query Users Table to fetch the ID of the user who will have a new contact added to their list.
 if ($result = $mysqli -> query("SELECT ID FROM Users WHERE Login = '$usr' AND Password = '$pwd'")) {

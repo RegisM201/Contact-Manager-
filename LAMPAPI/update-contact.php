@@ -59,6 +59,10 @@
 	$newEmail = $in["email"];
 	$newNumber = $in["phone"];
 
+	if ($firstName === "") {
+	    returnWithError("2");
+	}
+
 	$sql = "UPDATE Contacts
 			SET FirstName='$newFirstName', LastName='$newLastName', Address='$newAddr',
 			Email='$newEmail', PhoneNumber='$newNumber'
