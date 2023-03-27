@@ -3,13 +3,6 @@
 	header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 	header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
 
-	// Report all errors.
-	error_reporting(E_ALL);
-
-	// Display errors.
-        ini_set('display_errors', 1);
-        ini_set('display_startup_errors', 1);
-        error_reporting(E_ALL);
 
     // Get json from frontend.
 	$inData = getRequestInfo();
