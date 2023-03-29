@@ -447,7 +447,7 @@ render = () => {
     // Apply forces to velocity
     confetto.velocity.x -= confetto.velocity.x * drag;
     confetto.velocity.y = Math.min(confetto.velocity.y + gravity, terminalVelocity);
-    confetto.velocity.x += Math.random() > 0.5 ? Math.random() : -Math.random();
+    //confetto.velocity.x += Math.random() > 0.5 ? Math.random() : -Math.random();
 
     // Set position
     confetto.position.x += confetto.velocity.x;
@@ -461,7 +461,7 @@ render = () => {
     if (confetto.position.x < 0) confetto.position.x = canvas.width;
 
     // Spin confetto by scaling y
-    confetto.scale.y = Math.cos(confetto.position.y * 0.1);
+    //confetto.scale.y = Math.cos(confetto.position.y * 0.1);
     //ctx.fillStyle = confetto.scale.y > 0 ? confetto.color.front : confetto.color.back;
 
     // Draw confetti
