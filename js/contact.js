@@ -30,7 +30,7 @@ class Connection {
 		//send message AJAX request
 		let request= new XMLHttpRequest();
 		
-		request.open("POST", "http://147.182.163.107/LAMPAPI/delete.php", true); //later change to IP address for serverside
+		request.open("POST", "http://cop4331group5.ninja/LAMPAPI/delete.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
    			 if (request.readyState === 4) {
@@ -65,7 +65,7 @@ class Connection {
 		//send message AJAX request
 		let request= new XMLHttpRequest();
 		
-		request.open("POST", "http://147.182.163.107/LAMPAPI/new-contact.php", true); //later change to IP address for serverside
+		request.open("POST", "http://cop4331group5.ninja/LAMPAPI/new-contact.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
    			 if (request.readyState === 4) {
@@ -107,7 +107,7 @@ class Connection {
 		//send message AJAX request
 		let request= new XMLHttpRequest();
 		
-		request.open("POST", "http://147.182.163.107/LAMPAPI/update-contact.php", true); //later change to IP address for serverside
+		request.open("POST", "http://cop4331group5.ninja/LAMPAPI/update-contact.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
    			 if (request.readyState === 4) {
@@ -142,7 +142,7 @@ class Connection {
 		//send message AJAX request
 		let request= new XMLHttpRequest();
 		
-		request.open("POST", "http://147.182.163.107/LAMPAPI/read.php", true); //later change to IP address for serverside
+		request.open("POST", "http://cop4331group5.ninja/LAMPAPI/read.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
    			 if (request.readyState === 4) {
@@ -182,7 +182,7 @@ class Connection {
 		//send message AJAX request
 		let request= new XMLHttpRequest();
 		
-		request.open("POST", "http://147.182.163.107/LAMPAPI/search.php", true); //later change to IP address for serverside
+		request.open("POST", "http://cop4331group5.ninja/LAMPAPI/search.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
    			 if (request.readyState === 4) {
