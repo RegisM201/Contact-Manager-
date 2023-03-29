@@ -10,7 +10,7 @@ class LoginRequest {
 		//send message AJAX request
 		let request= new XMLHttpRequest();
 		
-		request.open("POST", "http://147.182.163.107/LAMPAPI/login.php", true); //later change to IP address for serverside
+		request.open("POST", "http://cop4331group5.ninja/LAMPAPI/login.php", true); //later change to IP address for serverside
 		request.setRequestHeader("Content-type", "application/json");
 		request.onreadystatechange = () => {
    			 if (request.readyState === 4) {
